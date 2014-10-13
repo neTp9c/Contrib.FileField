@@ -23,6 +23,7 @@ namespace Contrib.FileField.Settings {
                 builder.WithSetting("FileFieldSettings.MediaFolder", model.MediaFolder);
                 builder.WithSetting("FileFieldSettings.ExtenstionsAllowed", model.ExtenstionsAllowed);
                 builder.WithSetting("FileFieldSettings.NameTag", model.NameTag.ToString());
+                builder.WithSetting("FileFieldSettings.MaxFileSize", model.MaxFileSize.ToString());
             }
 
             yield return DefinitionTemplate(model);

@@ -48,3 +48,9 @@
     <span class="hint">@T("Timestamp: System will add timestamp (yyyyMMddhhmmss) to the attached file, example file-20140312131520.pdf.")</span>
     <span class="hint">@T("Index: System will add the index to the attached file like in Windows, example file (1).pdf.")</span>
 </fieldset>
+<fieldset>
+    <label for="@Html.FieldIdFor(m => m.MaxFileSize)">@T("Maximum file size")</label>
+    @Html.TextBoxFor(m => m.MaxFileSize, new { @class = "textMedium", rows = "5" })
+    <span class="hint">@T("The maximum file size in Kilobytes.")</span>
+    @Html.ValidationMessageFor(m => m.MaxFileSize)
+</fieldset>
