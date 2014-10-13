@@ -87,41 +87,50 @@ namespace Contrib.FileField.Drivers
 
                     if (allowedExtensions.Contains(extension))
                     {
-                        var postedFileLength = postedFile.ContentLength;
-                        var postedFileData = new byte[postedFileLength];
-                        var postedFileStream = postedFile.InputStream;
-                        postedFileStream.Read(postedFileData, 0, postedFileLength);
-
-
-                        try
+                        if (postedFile.ContentLength <= (settings.MaxFileSize * 1024))
                         {
-                            // try to create the folder before uploading a file into it
-                            _storageProvider.CreateFolder(mediaFolder);
+                            var postedFileLength = postedFile.ContentLength;
+                            var postedFileData = new byte[postedFileLength];
+                            var postedFileStream = postedFile.InputStream;
+                            postedFileStream.Read(postedFileData, 0, postedFileLength);
+
+
+                            try
+                            {
+                                // try to create the folder before uploading a file into it
+                                _storageProvider.CreateFolder(mediaFolder);
+                            }
+                            catch
+                            {
+                                // the folder can't be created because it already exists, continue
+                            }
+
+                            if (settings.NameTag == NameTags.Index)
+                            {
+                                var lastFileIndex =
+                                    _storageProvider.ListFiles(mediaFolder)
+                                        .Count(f => Path.GetFileNameWithoutExtension(f.GetName()).Contains(fileName));
+
+                                fileName = String.Format("{0} ({1}).{2}", fileName, lastFileIndex + 1, extension);
+                            }
+                            else if (settings.NameTag == NameTags.TimeStamp)
+                                fileName = String.Format("{0}-{1}.{2}", fileName,
+                                    DateTime.Now.ToString("yyyyMMddhhmmss"), extension);
+
+                            //
+                            var filePath = _storageProvider.Combine(mediaFolder, fileName);
+                            var file = _storageProvider.CreateFile(filePath);
+                            using (var fileStream = file.OpenWrite())
+                            {
+                                fileStream.Write(postedFileData, 0, postedFileLength);
+                            }
+
+                            field.Path = _storageProvider.GetPublicUrl(file.GetPath());
                         }
-                        catch
+                        else
                         {
-                            // the folder can't be created because it already exists, continue
+                            updater.AddModelError("File", T("The file size is bigger than the maximum file size, maximum size is {0}KB.", settings.MaxFileSize));
                         }
-
-                        if (settings.NameTag == NameTags.Index)
-                        {
-                            var lastFileIndex =
-                                _storageProvider.ListFiles(mediaFolder).Count(f => Path.GetFileNameWithoutExtension(f.GetName()).Contains(fileName));
-
-                            fileName = String.Format("{0} ({1}).{2}", fileName, lastFileIndex + 1, extension);
-                        }
-                        else if (settings.NameTag == NameTags.TimeStamp)
-                            fileName = String.Format("{0}-{1}.{2}", fileName, DateTime.Now.ToString("yyyyMMddhhmmss"), extension);
-
-                        //
-                        var filePath = _storageProvider.Combine(mediaFolder, fileName);
-                        var file = _storageProvider.CreateFile(filePath);
-                        using (var fileStream = file.OpenWrite())
-                        {
-                            fileStream.Write(postedFileData, 0, postedFileLength);
-                        }
-
-                        field.Path = _storageProvider.GetPublicUrl(file.GetPath());
                     }
                     else
                     {

@@ -6,6 +6,7 @@
         public string MediaFolder { get; set; }
         public string ExtenstionsAllowed { get; set; }
         public NameTags NameTag { get; set; }
+        public int MaxFileSize { get; set; }
     }
 
     public enum OpenAction {
