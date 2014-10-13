@@ -34,5 +34,17 @@
 <fieldset>
     <label for="@Html.FieldIdFor(m => m.ExtenstionsAllowed)">@T("Extenstions Allowed")</label>
     @Html.TextBoxFor(m => m.ExtenstionsAllowed, new { @class = "textMedium" })
-    <span class="hint">@T("File extenstions allowed to upload sperated by comma. example jpg, png, doc, pdf")</span>
+    <span class="hint">@T("File extenstions allowed to upload sperated by comma. example .jpg, .png")</span>
+</fieldset>
+<fieldset>
+    <select name="@Html.FieldNameFor(m => m.NameTag)" size="1">
+        @foreach (var item in Enum.GetValues(typeof(Contrib.FileField.Settings.NameTags)))
+        {
+            var name = Enum.GetName(typeof(Contrib.FileField.Settings.NameTags), item);
+            <option value="@item" @if (Convert.ToInt32(Model.NameTag) == Convert.ToInt32(item))
+                                  { <text>selected="selected"</text> }>@T(name)</option>
+        }
+    </select>
+    <span class="hint">@T("Timestamp: System will add timestamp (yyyyMMddhhmmss) to the attached file, example file-20140312131520.pdf.")</span>
+    <span class="hint">@T("Index: System will add the index to the attached file like in Windows, example file (1).pdf.")</span>
 </fieldset>
