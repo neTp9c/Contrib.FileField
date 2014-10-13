@@ -10,5 +10,6 @@ This is a re-implemented version of [Orchard.Module.Contrib.FileField](https://g
 
 
 
-## Thanks to ##
-- [sanderg](https://www.codeplex.com/site/users/view/sanderg) from codeplex
+## Credits ##
+- [John Murdoch](https://gallery.orchardproject.net/List/Modules/Orchard.Module.Contrib.FileField): module developer
+- [sanderg](https://www.codeplex.com/site/users/view/sanderg) for his answers on codeplex
