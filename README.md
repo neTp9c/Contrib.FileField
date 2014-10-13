@@ -3,3 +3,12 @@ This is a re-implemented version of [Orchard.Module.Contrib.FileField](https://g
 
 ## New Features ##
 - Set accepted file extensions.
+
+
+
+
+
+
+
+## Thanks to ##
+- [sanderg](https://www.codeplex.com/site/users/view/sanderg) from codeplex
