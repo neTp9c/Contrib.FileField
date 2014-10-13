@@ -22,6 +22,7 @@ namespace Contrib.FileField.Settings {
                 builder.WithSetting("FileFieldSettings.Hint", model.Hint);
                 builder.WithSetting("FileFieldSettings.MediaFolder", model.MediaFolder);
                 builder.WithSetting("FileFieldSettings.ExtenstionsAllowed", model.ExtenstionsAllowed);
+                builder.WithSetting("FileFieldSettings.NameTag", model.NameTag.ToString());
             }
 
             yield return DefinitionTemplate(model);
