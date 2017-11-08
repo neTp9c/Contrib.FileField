@@ -2,8 +2,8 @@ Name: File Field
 AntiForgery: enabled
 Author: John Murdoch
 Website: http://orchard.codeplex.com/
-Version: 1.2
-OrchardVersion: 1.0
+Version: 1.2.1
+OrchardVersion: 1.9
 Description: The file field adds the ability to link/attach files for download i.e. PDF, Word Docs
 Features:
     Contrib.FileField:
