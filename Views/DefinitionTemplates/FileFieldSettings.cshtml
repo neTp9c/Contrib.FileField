@@ -54,3 +54,8 @@
     <span class="hint">@T("The maximum file size in Kilobytes.")</span>
     @Html.ValidationMessageFor(m => m.MaxFileSize)
 </fieldset>
+<fieldset>
+    @Html.CheckBoxFor(m => m.RemovePreviousFileOnUpload)
+    <label class="forcheckbox" for="@Html.FieldIdFor(m => m.RemovePreviousFileOnUpload)">@T("Remove previous file on upload")</label>
+    <span class="hint">@T("If checked, the previously saved file will be removed when new one is uploaded.")</span>
+</fieldset>

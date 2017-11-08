@@ -7,6 +7,7 @@
         public string ExtenstionsAllowed { get; set; }
         public NameTags NameTag { get; set; }
         public int MaxFileSize { get; set; }
+        public bool RemovePreviousFileOnUpload {get; set; }
     }
 
     public enum OpenAction {

@@ -24,6 +24,7 @@ namespace Contrib.FileField.Settings {
                 builder.WithSetting("FileFieldSettings.ExtenstionsAllowed", model.ExtenstionsAllowed);
                 builder.WithSetting("FileFieldSettings.NameTag", model.NameTag.ToString());
                 builder.WithSetting("FileFieldSettings.MaxFileSize", model.MaxFileSize.ToString());
+                builder.WithSetting("FileFieldSettings.RemovePreviousFileOnUpload", model.RemovePreviousFileOnUpload.ToString());
             }
 
             yield return DefinitionTemplate(model);

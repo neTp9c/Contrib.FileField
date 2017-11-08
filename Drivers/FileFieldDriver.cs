@@ -125,6 +125,16 @@ namespace Contrib.FileField.Drivers
                                 fileStream.Write(postedFileData, 0, postedFileLength);
                             }
 
+                            
+                            if(settings.RemovePreviousFileOnUpload && !string.IsNullOrEmpty(field.Path))
+                            {
+                                if(_storageProvider.FileExists(field.Path))
+                                {
+                                    _storageProvider.DeleteFile(field.Path);
+                                }
+                            }
+                            
+
                             field.Path = _storageProvider.GetPublicUrl(file.GetPath());
                         }
                         else
