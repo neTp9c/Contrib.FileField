@@ -145,7 +145,6 @@
   <ItemGroup>
     <Compile Include="Drivers\FileFieldDriver.cs" />
     <Compile Include="Fields\FileField.cs" />
-    <Compile Include="Filters\UrlFilter.cs" />
     <Compile Include="Settings\FileFieldEditorEvents.cs" />
     <Compile Include="Settings\FileFieldSettings.cs" />
     <Compile Include="ViewModels\FileFieldViewModel.cs" />
